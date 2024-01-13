@@ -56,7 +56,7 @@ class HomeFragment : Fragment() {
                     Log.d("olimpio", "orderId = ${orderIdState.data}")
                     viewModel.saveOrder(
                         Order(
-                            number = orderIdState.data.toInt(),
+                            number = orderIdState.data,
                             clientName = "Carlos",
                             items = listOf(
                                 Item("Mouse", 100, 10.0)
@@ -68,8 +68,12 @@ class HomeFragment : Fragment() {
                 }
                 is UiState.Loading -> {
                     // loading na view
+                    Log.d("olimpio", "loading orderid")
+
                 }
-                else -> {}
+                else -> {
+                    /* handle possible error */
+                }
             }
         }
     }

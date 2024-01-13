@@ -22,7 +22,10 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
 
     fun fetchOrderId() {
         viewModelScope.launch(Dispatchers.IO) {
-            _orderIdState.postValue(UiState.Success(repository.retrieveOrderId()))
+            val orderId = repository.retrieveOrderId()
+
+            orderId.data?.let { _orderIdState.postValue(UiState.Success(it)) }
+            orderId.error?.let { _orderIdState.postValue(UiState.Error(it)) }
         }
     }
 
@@ -43,7 +46,9 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
                     is OrderNotFoundException -> {
                         _orderListState.postValue(UiState.NotFound(it.message!!))
                     }
-                    else -> { /* other error */ }
+                    else -> {
+                        _orderListState.postValue(UiState.Error(it))
+                    }
                 }
             }
         }

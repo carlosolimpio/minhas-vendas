@@ -12,8 +12,8 @@ import com.carlosolimpio.minhasvendas.domain.order.OrderRepository
 
 class OrderRepositoryImpl(private val orderDao: OrderDao) : OrderRepository {
 
-    override suspend fun retrieveOrderId(): Long {
-        return orderDao.insertOrder(dummyOrder)
+    override suspend fun retrieveOrderId(): Resource<Long> {
+        return Resource.Success(orderDao.insertOrder(dummyOrder))
     }
 
     override suspend fun saveOrder(order: Order) {

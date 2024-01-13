@@ -1,7 +1,7 @@
 package com.carlosolimpio.minhasvendas.domain.order
 
 data class Order(
-    val number: Int,
+    val number: Long,
     val clientName: String,
     val items: List<Item>
 )
