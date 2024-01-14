@@ -2,4 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_gray_divider">#E6E6E6</color>
+    <color name="light_gray_card">#FAFAFA</color>
+    <color name="medium_gray">#4C585B</color>
+    <color name="dark_blue">#011E27</color>
+    <color name="neon_blue">#00E3F5</color>
+    <color name="neon_green">#D7FE03</color>
 </resources>

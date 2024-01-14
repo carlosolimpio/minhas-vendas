@@ -11,3 +11,6 @@ data class Item(
     val count: Int,
     val value: Double
 )
+
+fun List<Order>.computeTotalSalesValue() = this.sumOf { it.items.computeTotalOrderValue() }
+fun List<Item>.computeTotalOrderValue() = this.sumOf { it.count * it.value }

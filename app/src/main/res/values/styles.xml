@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MinhasVendas.TextTitle" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+
+    <style name="MinhasVendas.CardSummary" parent="CardView">
+        <item name="cardBackgroundColor">@color/dark_blue</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <style name="MinhasVendas.TextCardSummary" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MinhasVendas.TextCardSummaryTotalSales" parent="MinhasVendas.TextCardSummary">
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.01</item>
+    </style>
+
+    <style name="MinhasVendas.CardOrder" parent="CardView">
+        <item name="cardBackgroundColor">@color/light_gray_card</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="elevation">4dp</item>
+    </style>
+
+    <style name="MinhasVendas.TextCardOrder" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textColor">@color/medium_gray</item>
+    </style>
+
+    <style name="MinhasVendas.TextCardOrderValue" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+</resources>

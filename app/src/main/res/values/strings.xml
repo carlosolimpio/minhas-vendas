@@ -2,4 +2,12 @@
     <string name="app_name">Minhas Vendas</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="resumo">Resumo</string>
+    <string name="pedidos">Pedidos</string>
+    <string name="total_de_vendas">Total de vendas</string>
+    <string name="reais_value">"R$ %1$s"</string>
+    <string name="no_order_saved">Nenhum pedido cadastrado</string>
+    <string name="order_number">Nº do pedido</string>
+    <string name="client">Cliente</string>
+    <string name="order_total_value">Valor total do pedido</string>
 </resources>

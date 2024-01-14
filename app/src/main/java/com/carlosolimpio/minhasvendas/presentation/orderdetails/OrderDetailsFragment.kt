@@ -1,4 +1,4 @@
-package com.carlosolimpio.minhasvendas.presentation
+package com.carlosolimpio.minhasvendas.presentation.orderdetails
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.carlosolimpio.minhasvendas.presentation.HomeFragment"
+        android:name="com.carlosolimpio.minhasvendas.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment"
-        android:name="com.carlosolimpio.minhasvendas.presentation.OrderDetailsFragment"
+        android:name="com.carlosolimpio.minhasvendas.presentation.orderdetails.OrderDetailsFragment"
         android:label="fragment_order_details"
         tools:layout="@layout/fragment_order_details" >
     </fragment>
