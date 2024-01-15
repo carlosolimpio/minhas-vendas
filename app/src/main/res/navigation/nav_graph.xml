@@ -12,12 +12,21 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_orderDetailsFragment"
-            app:destination="@id/orderDetailsFragment" />
+            app:destination="@id/orderDetailsFragment">
+            <argument
+                android:name="orderId"
+                app:argType="long"
+                android:defaultValue="-1L" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment"
         android:name="com.carlosolimpio.minhasvendas.presentation.orderdetails.OrderDetailsFragment"
         android:label="fragment_order_details"
         tools:layout="@layout/fragment_order_details" >
+        <argument
+            android:name="orderId"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
 </navigation>

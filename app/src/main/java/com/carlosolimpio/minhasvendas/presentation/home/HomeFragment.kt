@@ -6,19 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.carlosolimpio.minhasvendas.R
 import com.carlosolimpio.minhasvendas.databinding.FragmentHomeBinding
 import com.carlosolimpio.minhasvendas.domain.core.UiState
 import com.carlosolimpio.minhasvendas.domain.order.Order
 import com.carlosolimpio.minhasvendas.domain.order.computeTotalSalesValue
-import com.carlosolimpio.minhasvendas.presentation.OrderViewModel
+import com.carlosolimpio.minhasvendas.presentation.HomeViewModel
 import com.carlosolimpio.minhasvendas.presentation.extensions.toBRLCurrencyString
 import org.koin.android.ext.android.inject
 
+const val CREATE_ORDER_ID = -1L
+
 class HomeFragment : Fragment() {
     private val binding: FragmentHomeBinding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
-    private val viewModel: OrderViewModel by inject()
+    private val viewModel: HomeViewModel by inject()
 
     private val orderListAdapter by lazy {
         OrderListAdapter { order -> showOrderDetails(order) }
@@ -37,6 +40,7 @@ class HomeFragment : Fragment() {
 
         observeOrderList()
         viewModel.fetchAllOrders()
+        initFab()
     }
 
     private fun observeOrderList() {
@@ -63,34 +67,6 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-
-        // will use this when creating an order
-/*        viewModel.orderIdState.observe(viewLifecycleOwner) { orderIdState ->
-            when (orderIdState) {
-                is UiState.Success -> {
-                    Log.d("olimpio", "orderId = ${orderIdState.data}")
-                    viewModel.saveOrder(
-                        Order(
-                            number = orderIdState.data,
-                            clientName = "Carlos",
-                            items = listOf(
-                                Item("Mouse", 100, 10.0)
-                            )
-                        )
-                    )
-
-                    viewModel.fetchAllOrders()
-                }
-                is UiState.Loading -> {
-                    // loading na view
-                    Log.d("olimpio", "loading orderid")
-
-                }
-                else -> {
-//                     handle possible error
-                }
-            }
-        }*/
     }
 
     private fun initTotalSalesView(orderList: List<Order>) {
@@ -113,6 +89,18 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun showOrderDetails(order: Order) {
+    private fun showOrderDetails(orderId: Long) {
+        navigateToOrderDetailsScreenWithId(orderId)
+    }
+
+    private fun initFab() {
+        binding.fabCreateOrder.setOnClickListener {
+            navigateToOrderDetailsScreenWithId()
+        }
+    }
+
+    private fun navigateToOrderDetailsScreenWithId(id: Long = CREATE_ORDER_ID) {
+        val action = HomeFragmentDirections.actionHomeFragmentToOrderDetailsFragment(id)
+        findNavController().navigate(action)
     }
 }

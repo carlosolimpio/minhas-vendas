@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="8dp"
+        style="@style/MinhasVendas.CardOrder">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textItemName"
+                style="@style/MinhasVendas.TextCardOrderValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Mouse" />
+
+            <ImageView
+                android:id="@+id/iconEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="7dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iconRemove"
+                app:layout_constraintEnd_toStartOf="@+id/iconRemove"
+                app:layout_constraintTop_toTopOf="@+id/iconRemove"
+                app:srcCompat="@drawable/icon_edit" />
+
+            <ImageView
+                android:id="@+id/iconRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textItemName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textItemName"
+                app:srcCompat="@drawable/icon_delete" />
+
+            <View
+                android:id="@+id/horizontalLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/light_gray_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textItemName" />
+
+            <TextView
+                android:id="@+id/textQtde"
+                style="@style/MinhasVendas.TextCardOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/qtde"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
+
+            <TextView
+                android:id="@+id/textQtdeValue"
+                style="@style/MinhasVendas.TextCardOrderValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textUnitary"
+                app:layout_constraintStart_toStartOf="@+id/textQtde"
+                app:layout_constraintTop_toBottomOf="@+id/textQtde"
+                tools:text="100" />
+
+            <TextView
+                android:id="@+id/textUnitary"
+                style="@style/MinhasVendas.TextCardOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="@string/unitary_value"
+                app:layout_constraintStart_toEndOf="@+id/textQtde"
+                app:layout_constraintTop_toTopOf="@+id/textQtde" />
+
+            <TextView
+                android:id="@+id/textUnitaryValue"
+                style="@style/MinhasVendas.TextCardOrderValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/reais_value"
+                app:layout_constraintEnd_toStartOf="@+id/textTotalItem"
+                app:layout_constraintStart_toStartOf="@+id/textUnitary"
+                app:layout_constraintTop_toTopOf="@+id/textQtdeValue"
+                tools:text="R$ 100,00" />
+
+            <TextView
+                android:id="@+id/textTotalItem"
+                style="@style/MinhasVendas.TextCardOrder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="@string/total_value"
+                app:layout_constraintStart_toEndOf="@+id/textUnitary"
+                app:layout_constraintTop_toTopOf="@+id/textUnitary" />
+
+            <TextView
+                android:id="@+id/textTotalItemValue"
+                style="@style/MinhasVendas.TextCardOrderValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@string/reais_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textTotalItem"
+                app:layout_constraintTop_toTopOf="@+id/textUnitaryValue"
+                tools:text="R$ 10.000,00" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.appcompat.widget.LinearLayoutCompat>

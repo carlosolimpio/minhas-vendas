@@ -1,4 +1,4 @@
-package com.carlosolimpio.minhasvendas.presentation
+package com.carlosolimpio.minhasvendas.presentation.orderdetails
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,14 +11,14 @@ import com.carlosolimpio.minhasvendas.domain.order.OrderRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
-    private val _orderListState = MutableLiveData<UiState<List<Order>>>(UiState.Loading)
-    val orderListState: LiveData<UiState<List<Order>>>
-        get() = _orderListState
-
+class OrderDetailsViewModel(private val repository: OrderRepository) : ViewModel() {
     private val _orderIdState = MutableLiveData<UiState<Long>>(UiState.Loading)
     val orderIdState: LiveData<UiState<Long>>
         get() = _orderIdState
+
+    private val _orderState = MutableLiveData<UiState<Order>>(UiState.Loading)
+    val orderState: LiveData<UiState<Order>>
+        get() = _orderState
 
     private val _isDeletedState = MutableLiveData<UiState<Boolean>>(UiState.Loading)
     val isDeletedState: LiveData<UiState<Boolean>>
@@ -49,18 +49,18 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
         }
     }
 
-    fun fetchAllOrders() {
+    fun fetchOrderById(id: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            val orders = repository.getAllOrders()
+            val order = repository.getOrderFromId(id)
 
-            orders.data?.let { _orderListState.postValue(UiState.Success(it)) }
-            orders.error?.let {
+            order.data?.let { _orderState.postValue(UiState.Success(it)) }
+            order.error?.let {
                 when (it) {
                     is OrderNotFoundException -> {
-                        _orderListState.postValue(UiState.NotFound(it.message!!))
+                        _orderState.postValue(UiState.NotFound(it.message!!))
                     }
                     else -> {
-                        _orderListState.postValue(UiState.Error(it))
+                        _orderState.postValue(UiState.Error(it))
                     }
                 }
             }

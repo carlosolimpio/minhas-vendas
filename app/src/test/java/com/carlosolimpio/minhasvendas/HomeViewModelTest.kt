@@ -8,7 +8,7 @@ import com.carlosolimpio.minhasvendas.domain.core.UiState
 import com.carlosolimpio.minhasvendas.domain.order.Item
 import com.carlosolimpio.minhasvendas.domain.order.Order
 import com.carlosolimpio.minhasvendas.domain.order.OrderRepository
-import com.carlosolimpio.minhasvendas.presentation.OrderViewModel
+import com.carlosolimpio.minhasvendas.presentation.HomeViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.Runs
 import io.mockk.coEvery
@@ -34,21 +34,21 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 @ExperimentalCoroutinesApi
-class OrderViewModelTest {
+class HomeViewModelTest {
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
     private val dispatcher = StandardTestDispatcher()
 
     @MockK
     private lateinit var repository: OrderRepository
-    private lateinit var viewModel: OrderViewModel
+    private lateinit var viewModel: HomeViewModel
 
     @Before
     fun setUp() {
         Dispatchers.setMain(dispatcher)
 
         MockKAnnotations.init(this)
-        viewModel = OrderViewModel(repository)
+        viewModel = HomeViewModel(repository)
     }
 
     @After

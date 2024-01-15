@@ -10,4 +10,12 @@
     <string name="order_number">Nº do pedido</string>
     <string name="client">Cliente</string>
     <string name="order_total_value">Valor total do pedido</string>
+    <string name="order_info_title">Informações do pedido</string>
+    <string name="card_order_number_title">Número do pedido</string>
+    <string name="registered_items">Itens cadastrados</string>
+    <string name="item_quantity">Quantidade de itens</string>
+    <string name="no_item_registered">Nenhum item cadastrado</string>
+    <string name="qtde">Qtde</string>
+    <string name="unitary_value">Valor unitário</string>
+    <string name="total_value">Valor total</string>
 </resources>

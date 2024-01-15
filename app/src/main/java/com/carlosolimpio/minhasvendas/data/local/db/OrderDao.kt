@@ -1,7 +1,6 @@
 package com.carlosolimpio.minhasvendas.data.local.db
 
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -14,11 +13,11 @@ interface OrderDao {
     suspend fun insertOrder(order: OrderEntity): Long
 
     @Query("SELECT * FROM order_table WHERE id = :id")
-    suspend fun getOrderFromId(id: Int): OrderEntity?
+    suspend fun getOrderFromId(id: Long): OrderEntity?
 
     @Query("SELECT * FROM order_table")
     suspend fun getAllOrders(): List<OrderEntity>
 
-    @Delete
+    @Query("DELETE FROM order_table WHERE id = :id")
     suspend fun deleteOrder(id: Long): Int
 }

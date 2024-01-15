@@ -35,7 +35,7 @@ class OrderRepositoryImpl(private val orderDao: OrderDao) : OrderRepository {
         orderDao.insertOrder(order.toOrderEntity())
     }
 
-    override suspend fun getOrderFromId(id: Int): Resource<Order?> {
+    override suspend fun getOrderFromId(id: Long): Resource<Order?> {
         val orderEntity = orderDao.getOrderFromId(id)
 
         return if (orderEntity != null) {

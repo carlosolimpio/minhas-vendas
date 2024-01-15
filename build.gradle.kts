@@ -5,3 +5,10 @@ plugins {
     id("com.google.devtools.ksp") version "1.9.10-1.0.13" apply false
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
+
+buildscript {
+    dependencies {
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.6")
+    }
+}
+

@@ -12,7 +12,7 @@ import com.carlosolimpio.minhasvendas.domain.order.computeTotalOrderValue
 import com.carlosolimpio.minhasvendas.presentation.extensions.toBRLCurrencyString
 
 class OrderListAdapter(
-    private val onOrderClick: (order: Order) -> Unit
+    private val onOrderClick: (orderId: Long) -> Unit
 ) : RecyclerView.Adapter<OrderListAdapter.OrderViewHolder>() {
 
     private val diffUtil = object : DiffUtil.ItemCallback<Order>() {
@@ -57,7 +57,7 @@ class OrderListAdapter(
                     order.items.computeTotalOrderValue().toBRLCurrencyString()
                 )
 
-                cardItemOrder.setOnClickListener { onOrderClick(order) }
+                cardItemOrder.setOnClickListener { onOrderClick(order.number) }
             }
         }
     }

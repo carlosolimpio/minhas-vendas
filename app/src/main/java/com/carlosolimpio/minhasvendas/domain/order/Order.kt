@@ -14,3 +14,4 @@ data class Item(
 
 fun List<Order>.computeTotalSalesValue() = this.sumOf { it.items.computeTotalOrderValue() }
 fun List<Item>.computeTotalOrderValue() = this.sumOf { it.count * it.value }
+fun Item.computeTotalValue() = this.count * this.value
