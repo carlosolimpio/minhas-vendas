@@ -20,12 +20,25 @@ class OrderViewModel(private val repository: OrderRepository) : ViewModel() {
     val orderIdState: LiveData<UiState<Long>>
         get() = _orderIdState
 
+    private val _isDeletedState = MutableLiveData<UiState<Boolean>>(UiState.Loading)
+    val isDeletedState: LiveData<UiState<Boolean>>
+        get() = _isDeletedState
+
     fun fetchOrderId() {
         viewModelScope.launch(Dispatchers.IO) {
             val orderId = repository.retrieveOrderId()
 
             orderId.data?.let { _orderIdState.postValue(UiState.Success(it)) }
             orderId.error?.let { _orderIdState.postValue(UiState.Error(it)) }
+        }
+    }
+
+    fun deleteOrder(id: Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val isDeleted = repository.deleteOrderId(id)
+
+            isDeleted.data?.let { _isDeletedState.postValue(UiState.Success(it)) }
+            isDeleted.error?.let { _isDeletedState.postValue(UiState.Error(it)) }
         }
     }
 

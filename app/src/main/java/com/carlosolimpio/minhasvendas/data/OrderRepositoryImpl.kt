@@ -16,6 +16,21 @@ class OrderRepositoryImpl(private val orderDao: OrderDao) : OrderRepository {
         return Resource.Success(orderDao.insertOrder(dummyOrder))
     }
 
+    override suspend fun deleteOrderId(id: Long): Resource<Boolean> {
+        val rowDeletedCount = orderDao.deleteOrder(id)
+
+        return if (rowDeletedCount == 1) {
+            Resource.Success(true)
+        } else {
+            Resource.Error(
+                null,
+                OrderNotFoundException(
+                    "While trying to delete, the order was not found for the id = $id"
+                )
+            )
+        }
+    }
+
     override suspend fun saveOrder(order: Order) {
         orderDao.insertOrder(order.toOrderEntity())
     }
