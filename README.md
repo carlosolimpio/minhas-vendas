@@ -41,9 +41,9 @@ This is a standard Android application. To run the project you will need to foll
 
 [Watch the demo video on Google Drive](https://drive.google.com/file/d/16WlTbCjD23KzQl47y6b4Yxom_dZ8qPP9/view?usp=sharing)
 
-<img src="https://github.com/carlosolimpio/minhas-vendas/assets/11680359/2727bd25-4ea7-4ce3-969d-9303fbb74ea5" alt="drawing" width="300"/>
-<img src="https://github.com/carlosolimpio/minhas-vendas/assets/11680359/485e27ab-e054-4bea-b59c-131c2fa4e7cc" alt="drawing" width="300"/>
-<img src="https://github.com/carlosolimpio/minhas-vendas/assets/11680359/5048faa2-3391-4603-b563-55e6783a97fa" alt="drawing" width="300"/>
+<img src="https://github.com/carlosolimpio/minhas-vendas/assets/11680359/2727bd25-4ea7-4ce3-969d-9303fbb74ea5" alt="drawing" width="250"/>
+<img src="https://github.com/carlosolimpio/minhas-vendas/assets/11680359/485e27ab-e054-4bea-b59c-131c2fa4e7cc" alt="drawing" width="250"/>
+<img src="https://github.com/carlosolimpio/minhas-vendas/assets/11680359/5048faa2-3391-4603-b563-55e6783a97fa" alt="drawing" width="250"/>
 
 
 
