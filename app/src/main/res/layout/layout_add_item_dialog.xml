@@ -14,7 +14,8 @@
         android:ems="10"
         android:inputType="text"
         android:imeOptions="actionNext"
-        android:hint="Item"
+        android:textSize="16sp"
+        android:hint="@string/item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +28,8 @@
         android:ems="10"
         android:imeOptions="actionNext"
         android:inputType="number"
-        android:hint="Quantidade"
+        android:textSize="16sp"
+        android:hint="@string/qtde"
         app:layout_constraintStart_toStartOf="@+id/editTextItemName"
         app:layout_constraintTop_toBottomOf="@+id/editTextItemName" />
 
@@ -39,7 +41,8 @@
         android:ems="10"
         android:imeOptions="actionDone"
         android:inputType="numberDecimal"
-        android:hint="Valor unitário"
+        android:hint="@string/unitary_value"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/editTextItemName"
         app:layout_constraintStart_toEndOf="@+id/editTextQuantity"
         app:layout_constraintTop_toTopOf="@+id/editTextQuantity" />
@@ -88,11 +91,13 @@
 
     <Button
         android:id="@+id/buttonCancelItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
         android:layout_marginVertical="32dp"
         android:layout_marginEnd="12dp"
         android:text="@string/cancel"
+        android:background="@drawable/shape_button2"
+        android:textColor="@color/dark_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonRegisterItem"
         app:layout_constraintHorizontal_bias="0.5"
@@ -102,9 +107,11 @@
 
     <Button
         android:id="@+id/buttonRegisterItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
         android:text="@string/register"
+        android:background="@drawable/shape_button1"
+        android:textColor="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonCancelItem"

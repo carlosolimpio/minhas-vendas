@@ -71,7 +71,8 @@
                 android:layout_marginTop="26dp"
                 android:ems="10"
                 android:inputType="text"
-                android:hint="Name"
+                android:hint="@string/client_name"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="@+id/card_order_id"
                 app:layout_constraintStart_toStartOf="@+id/card_order_id"
                 app:layout_constraintTop_toBottomOf="@+id/card_order_id" />
@@ -99,10 +100,13 @@
 
             <Button
                 android:id="@+id/buttonAddItem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="110dp"
+                android:layout_height="32dp"
                 android:layout_marginEnd="24dp"
+                android:background="@drawable/shape_button2"
                 android:text="@string/include_item"
+                android:textSize="12sp"
+                android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toBottomOf="@+id/textRegisteredItemsTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textRegisteredItemsTitle" />
@@ -240,11 +244,13 @@
 
             <Button
                 android:id="@+id/buttonCancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="32dp"
                 android:layout_marginEnd="12dp"
+                android:background="@drawable/shape_button2"
                 android:text="@string/cancel"
+                android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/buttonSave"
                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -252,10 +258,12 @@
 
             <Button
                 android:id="@+id/buttonSave"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="165dp"
+                android:layout_height="40dp"
                 android:layout_marginBottom="32dp"
+                android:background="@drawable/shape_button1"
                 android:text="@string/save_order"
+                android:textColor="@color/dark_blue"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttonCancel" />
@@ -272,7 +280,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

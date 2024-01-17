@@ -26,4 +26,6 @@
     <string name="total_item_value">Valor total do item</string>
     <string name="register">Cadastrar</string>
     <string name="register_item">Cadastrar item</string>
+    <string name="item">Item</string>
+    <string name="client_name">Nome do cliente</string>
 </resources>
