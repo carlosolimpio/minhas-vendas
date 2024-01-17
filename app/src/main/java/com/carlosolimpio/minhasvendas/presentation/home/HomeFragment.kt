@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeOrderList()
+        initTotalSalesView(null)
         initFab()
     }
 
@@ -55,10 +56,12 @@ class HomeFragment : Fragment() {
 
                     binding.pbOrderList.visibility = View.GONE
                     binding.cardOrdersNotFound.visibility = View.GONE
+                    binding.pbTotalSalesValue.visibility = View.GONE
                 }
                 is UiState.NotFound -> {
                     binding.cardOrdersNotFound.visibility = View.VISIBLE
                     binding.pbOrderList.visibility = View.GONE
+                    binding.pbTotalSalesValue.visibility = View.GONE
                 }
                 is UiState.Error -> {
                     binding.pbOrderList.visibility = View.GONE
@@ -72,13 +75,12 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initTotalSalesView(orderList: List<Order>) {
+    private fun initTotalSalesView(orderList: List<Order>?) {
         binding.apply {
-            pbTotalSalesValue.visibility = View.GONE
             textTotalSalesValue.visibility = View.VISIBLE
             textTotalSalesValue.text = requireContext().getString(
                 R.string.reais_value,
-                orderList.computeTotalSalesValue().toBRLCurrencyString()
+                orderList?.computeTotalSalesValue()?.toBRLCurrencyString() ?: getString(R.string.number_zero)
             )
         }
     }
