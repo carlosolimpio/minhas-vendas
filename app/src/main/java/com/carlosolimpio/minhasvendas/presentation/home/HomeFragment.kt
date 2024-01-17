@@ -13,7 +13,6 @@ import com.carlosolimpio.minhasvendas.databinding.FragmentHomeBinding
 import com.carlosolimpio.minhasvendas.domain.core.UiState
 import com.carlosolimpio.minhasvendas.domain.order.Order
 import com.carlosolimpio.minhasvendas.domain.order.computeTotalSalesValue
-import com.carlosolimpio.minhasvendas.presentation.HomeViewModel
 import com.carlosolimpio.minhasvendas.presentation.extensions.toBRLCurrencyString
 import org.koin.android.ext.android.inject
 
@@ -39,8 +38,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeOrderList()
-        viewModel.fetchAllOrders()
         initFab()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.fetchAllOrders()
     }
 
     private fun observeOrderList() {

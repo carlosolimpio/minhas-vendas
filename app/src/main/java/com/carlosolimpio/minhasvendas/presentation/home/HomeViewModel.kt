@@ -1,4 +1,4 @@
-package com.carlosolimpio.minhasvendas.presentation
+package com.carlosolimpio.minhasvendas.presentation.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -71,7 +71,7 @@
                 android:layout_marginTop="26dp"
                 android:ems="10"
                 android:inputType="text"
-                android:text="Name"
+                android:hint="Name"
                 app:layout_constraintEnd_toEndOf="@+id/card_order_id"
                 app:layout_constraintStart_toStartOf="@+id/card_order_id"
                 app:layout_constraintTop_toBottomOf="@+id/card_order_id" />
@@ -98,11 +98,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonAddItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
-                android:text="insert"
+                android:text="@string/include_item"
                 app:layout_constraintBottom_toBottomOf="@+id/textRegisteredItemsTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textRegisteredItemsTitle" />
@@ -116,7 +116,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button">
+                app:layout_constraintTop_toBottomOf="@+id/buttonAddItem">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -144,7 +144,7 @@
 
                     <TextView
                         android:id="@+id/textItemCountValue"
-                        style="@style/MinhasVendas.TextCardSummary"
+                        style="@style/MinhasVendas.TextCardSummaryValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
@@ -175,38 +175,32 @@
 
                     <TextView
                         android:id="@+id/textCardOrderTotalValue"
-                        style="@style/MinhasVendas.TextCardSummary"
+                        style="@style/MinhasVendas.TextCardSummaryValue"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:text="@string/reais_value"
                         android:textAlignment="textEnd"
                         android:textStyle="bold"
-                        android:text="@string/reais_value"
                         app:layout_constraintBottom_toBottomOf="@+id/textOrderTotalTitle"
                         app:layout_constraintEnd_toEndOf="@+id/textItemCountValue"
                         app:layout_constraintStart_toEndOf="@+id/textOrderTotalTitle"
                         app:layout_constraintTop_toTopOf="@+id/textOrderTotalTitle"
                         tools:text="R$ 100,00" />
+
+                    <ProgressBar
+                        android:id="@+id/card_progress_bar"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:indeterminateTint="@color/neon_blue"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="cancel"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button3"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="save"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button2" />
 
             <LinearLayout
                 android:id="@+id/layoutItems"
@@ -214,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/button2"
+                app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardItemsSummary"
@@ -226,7 +220,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginHorizontal="24dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginVertical="8dp"
                     android:visibility="gone">
 
                     <androidx.appcompat.widget.LinearLayoutCompat
@@ -243,6 +237,42 @@
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:layout_marginEnd="12dp"
+                android:text="@string/cancel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:text="@string/save_order"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/buttonCancel" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="164dp"
+                android:indeterminateTint="@color/neon_blue"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

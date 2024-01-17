@@ -18,4 +18,12 @@
     <string name="qtde">Qtde</string>
     <string name="unitary_value">Valor unitário</string>
     <string name="total_value">Valor total</string>
+    <string name="cancel">Cancelar</string>
+    <string name="save_order">Salvar pedido</string>
+    <string name="edit_order">Editar pedido</string>
+    <string name="number_zero">0</string>
+    <string name="include_item">Incluir item</string>
+    <string name="total_item_value">Valor total do item</string>
+    <string name="register">Cadastrar</string>
+    <string name="register_item">Cadastrar item</string>
 </resources>

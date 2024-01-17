@@ -9,7 +9,7 @@ fun Fragment.onBackPressedCustomAction(action: () -> Unit) {
         viewLifecycleOwner,
         object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                action()
+                action.invoke()
                 findNavController().popBackStack()
             }
         }

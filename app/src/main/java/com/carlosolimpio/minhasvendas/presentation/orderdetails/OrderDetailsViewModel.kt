@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.carlosolimpio.minhasvendas.domain.core.OrderNotFoundException
 import com.carlosolimpio.minhasvendas.domain.core.UiState
 import com.carlosolimpio.minhasvendas.domain.order.Order
 import com.carlosolimpio.minhasvendas.domain.order.OrderRepository
@@ -20,16 +19,16 @@ class OrderDetailsViewModel(private val repository: OrderRepository) : ViewModel
     val orderState: LiveData<UiState<Order>>
         get() = _orderState
 
-    private val _isDeletedState = MutableLiveData<UiState<Boolean>>(UiState.Loading)
-    val isDeletedState: LiveData<UiState<Boolean>>
-        get() = _isDeletedState
+    private val _toastState = MutableLiveData<String>()
+    val toastState: LiveData<String>
+        get() = _toastState
 
     fun fetchOrderId() {
         viewModelScope.launch(Dispatchers.IO) {
             val orderId = repository.retrieveOrderId()
 
             orderId.data?.let { _orderIdState.postValue(UiState.Success(it)) }
-            orderId.error?.let { _orderIdState.postValue(UiState.Error(it)) }
+            orderId.error?.let { _toastState.postValue(it.message) }
         }
     }
 
@@ -37,15 +36,17 @@ class OrderDetailsViewModel(private val repository: OrderRepository) : ViewModel
         viewModelScope.launch(Dispatchers.IO) {
             val isDeleted = repository.deleteOrderId(id)
 
-            isDeleted.data?.let { _isDeletedState.postValue(UiState.Success(it)) }
-            isDeleted.error?.let { _isDeletedState.postValue(UiState.Error(it)) }
+            isDeleted.data?.let { _toastState.postValue("Order deleted with success!") }
+            isDeleted.error?.let { _toastState.postValue(it.message) }
         }
     }
 
-    // falta validar os dados
     fun saveOrder(order: Order) {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.saveOrder(order)
+            val isSaved = repository.saveOrder(order)
+
+            isSaved.data?.let { _toastState.postValue("Order saved with success!") }
+            isSaved.error?.let { _toastState.postValue(it.message) }
         }
     }
 
@@ -54,16 +55,7 @@ class OrderDetailsViewModel(private val repository: OrderRepository) : ViewModel
             val order = repository.getOrderFromId(id)
 
             order.data?.let { _orderState.postValue(UiState.Success(it)) }
-            order.error?.let {
-                when (it) {
-                    is OrderNotFoundException -> {
-                        _orderState.postValue(UiState.NotFound(it.message!!))
-                    }
-                    else -> {
-                        _orderState.postValue(UiState.Error(it))
-                    }
-                }
-            }
+            order.error?.let { _toastState.postValue(it.message) }
         }
     }
 }

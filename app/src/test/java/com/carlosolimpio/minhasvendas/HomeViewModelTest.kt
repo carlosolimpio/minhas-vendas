@@ -8,7 +8,7 @@ import com.carlosolimpio.minhasvendas.domain.core.UiState
 import com.carlosolimpio.minhasvendas.domain.order.Item
 import com.carlosolimpio.minhasvendas.domain.order.Order
 import com.carlosolimpio.minhasvendas.domain.order.OrderRepository
-import com.carlosolimpio.minhasvendas.presentation.HomeViewModel
+import com.carlosolimpio.minhasvendas.presentation.home.HomeViewModel
 import io.mockk.MockKAnnotations
 import io.mockk.Runs
 import io.mockk.coEvery

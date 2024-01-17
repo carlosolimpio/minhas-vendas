@@ -17,8 +17,10 @@ class OrderRepositoryImpl(private val orderDao: OrderDao) : OrderRepository {
     }
 
     override suspend fun deleteOrderId(id: Long): Resource<Boolean> {
-        val rowDeletedCount = orderDao.deleteOrder(id)
+        if (isNotValidId(id))
+            return Resource.Error(null, IllegalArgumentException("Invalid id: $id"))
 
+        val rowDeletedCount = orderDao.deleteOrder(id)
         return if (rowDeletedCount == 1) {
             Resource.Success(true)
         } else {
@@ -31,13 +33,19 @@ class OrderRepositoryImpl(private val orderDao: OrderDao) : OrderRepository {
         }
     }
 
-    override suspend fun saveOrder(order: Order) {
-        orderDao.insertOrder(order.toOrderEntity())
+    override suspend fun saveOrder(order: Order): Resource<Boolean> {
+        if (isNotValidOrder(order))
+            return Resource.Error(null, IllegalArgumentException("Invalid order: $order"))
+
+        val savedId = orderDao.insertOrder(order.toOrderEntity())
+        return Resource.Success(!isNotValidId(savedId))
     }
 
     override suspend fun getOrderFromId(id: Long): Resource<Order?> {
-        val orderEntity = orderDao.getOrderFromId(id)
+        if (isNotValidId(id))
+            return Resource.Error(null, IllegalArgumentException("Invalid id: $id"))
 
+        val orderEntity = orderDao.getOrderFromId(id)
         return if (orderEntity != null) {
             Resource.Success(orderEntity.toOrder())
         } else {
@@ -53,6 +61,11 @@ class OrderRepositoryImpl(private val orderDao: OrderDao) : OrderRepository {
         } else {
             Resource.Error(null, OrderNotFoundException("Nenhum pedido cadastrado"))
         }
+    }
+
+    private fun isNotValidId(id: Long) = id <= 0L
+    private fun isNotValidOrder(order: Order): Boolean {
+        return isNotValidId(order.number) || order.clientName.isEmpty() || order.items.isEmpty()
     }
 
     companion object {

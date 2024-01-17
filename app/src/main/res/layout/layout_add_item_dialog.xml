@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <EditText
+        android:id="@+id/editTextItemName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="text"
+        android:imeOptions="actionNext"
+        android:hint="Item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextQuantity"
+        android:layout_width="86dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:imeOptions="actionNext"
+        android:inputType="number"
+        android:hint="Quantidade"
+        app:layout_constraintStart_toStartOf="@+id/editTextItemName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextItemName" />
+
+    <EditText
+        android:id="@+id/editTextUnitaryValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:ems="10"
+        android:imeOptions="actionDone"
+        android:inputType="numberDecimal"
+        android:hint="Valor unitário"
+        app:layout_constraintEnd_toEndOf="@+id/editTextItemName"
+        app:layout_constraintStart_toEndOf="@+id/editTextQuantity"
+        app:layout_constraintTop_toTopOf="@+id/editTextQuantity" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardItemSummary"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextUnitaryValue"
+        app:layout_constraintStart_toStartOf="@id/editTextQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUnitaryValue"
+        style="@style/MinhasVendas.CardSummary">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textItemTotal"
+                style="@style/MinhasVendas.TextCardSummary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@string/total_item_value"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textItemTotalValue"
+                style="@style/MinhasVendas.TextCardSummaryValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:textAlignment="textEnd"
+                android:text="@string/reais_value"
+                app:layout_constraintBottom_toBottomOf="@+id/textItemTotal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textItemTotal"
+                app:layout_constraintTop_toTopOf="@+id/textItemTotal"
+                tools:text="R$ 10,95" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/buttonCancelItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="32dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRegisterItem"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardItemSummary" />
+
+    <Button
+        android:id="@+id/buttonRegisterItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonCancelItem"
+        app:layout_constraintTop_toTopOf="@+id/buttonCancelItem" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
