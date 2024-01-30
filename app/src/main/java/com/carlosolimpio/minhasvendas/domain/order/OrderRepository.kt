@@ -7,5 +7,5 @@ interface OrderRepository {
     suspend fun deleteOrderId(id: Long): Resource<Boolean>
     suspend fun saveOrder(order: Order): Resource<Boolean>
     suspend fun getOrderFromId(id: Long): Resource<Order?>
-    suspend fun getAllOrders(): Resource<List<Order>>
+    suspend fun getAllOrders(): Resource<List<ListResult>>
 }

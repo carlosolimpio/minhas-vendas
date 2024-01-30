@@ -11,6 +11,7 @@ data class OrderEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val clientName: String,
+    val date: String?,
     val items: List<ItemEntity>
 )
 

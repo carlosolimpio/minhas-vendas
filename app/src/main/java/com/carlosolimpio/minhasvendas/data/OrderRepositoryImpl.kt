@@ -7,6 +7,7 @@ import com.carlosolimpio.minhasvendas.data.local.toOrder
 import com.carlosolimpio.minhasvendas.data.local.toOrderEntity
 import com.carlosolimpio.minhasvendas.domain.core.OrderNotFoundException
 import com.carlosolimpio.minhasvendas.domain.core.Resource
+import com.carlosolimpio.minhasvendas.domain.order.ListResult
 import com.carlosolimpio.minhasvendas.domain.order.Order
 import com.carlosolimpio.minhasvendas.domain.order.OrderRepository
 
@@ -53,14 +54,26 @@ class OrderRepositoryImpl(private val orderDao: OrderDao) : OrderRepository {
         }
     }
 
-    override suspend fun getAllOrders(): Resource<List<Order>> {
+    override suspend fun getAllOrders(): Resource<List<ListResult>> {
         val orderList = orderDao.getAllOrders()
 
         return if (orderList.isNotEmpty()) {
-            Resource.Success(orderList.map { it.toOrder() })
+            val maps = mutableMapOf<String, MutableList<Order>>()
+            orderList.forEach {
+                maps.getOrPut(it.date ?: "") { mutableListOf<Order>() }.add(it.toOrder())
+            }
+
+            val result = mutableListOf<ListResult>()
+            maps.forEach { (k, v) ->
+                result.add(ListResult.Header(k))
+                v.forEach { result.add(ListResult.OrderList(it)) }
+            }
+
+            Resource.Success(result)
         } else {
             Resource.Error(null, OrderNotFoundException("Nenhum pedido cadastrado"))
         }
+
     }
 
     private fun isNotValidId(id: Long) = id <= 0L
@@ -76,6 +89,7 @@ class OrderRepositoryImpl(private val orderDao: OrderDao) : OrderRepository {
          */
         private val dummyOrder = OrderEntity(
             clientName = "dummy",
+            date = "",
             items = listOf(ItemEntity("dummy", 0, 0.0))
         )
     }

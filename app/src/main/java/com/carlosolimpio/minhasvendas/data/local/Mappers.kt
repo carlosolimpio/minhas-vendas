@@ -8,6 +8,7 @@ import com.carlosolimpio.minhasvendas.domain.order.Order
 fun Order.toOrderEntity() = OrderEntity(
     id = number,
     clientName = clientName,
+    date = date,
     items = items.map { it.toItemEntity() }
 )
 
@@ -20,6 +21,7 @@ fun Item.toItemEntity() = ItemEntity(
 fun OrderEntity.toOrder() = Order(
     number = id,
     clientName = clientName,
+    date = date ?: "",
     items = items.map { it.toItem() }
 )
 

@@ -8,12 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.carlosolimpio.minhasvendas.R
 import com.carlosolimpio.minhasvendas.databinding.FragmentHomeBinding
 import com.carlosolimpio.minhasvendas.domain.core.UiState
-import com.carlosolimpio.minhasvendas.domain.order.Order
-import com.carlosolimpio.minhasvendas.domain.order.computeTotalSalesValue
-import com.carlosolimpio.minhasvendas.presentation.extensions.toBRLCurrencyString
+import com.carlosolimpio.minhasvendas.domain.order.ListResult
 import org.koin.android.ext.android.inject
 
 const val CREATE_ORDER_ID = -1L
@@ -75,17 +72,17 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun initTotalSalesView(orderList: List<Order>?) {
+    private fun initTotalSalesView(orderList: List<ListResult>?) {
         binding.apply {
             textTotalSalesValue.visibility = View.VISIBLE
-            textTotalSalesValue.text = requireContext().getString(
+/*            textTotalSalesValue.text = requireContext().getString(
                 R.string.reais_value,
                 orderList?.computeTotalSalesValue()?.toBRLCurrencyString() ?: getString(R.string.number_zero)
-            )
+            )*/
         }
     }
 
-    private fun initOrderList(orderList: List<Order>) {
+    private fun initOrderList(orderList: List<ListResult>) {
         orderListAdapter.submitData(orderList)
 
         with(binding.rvOrders) {

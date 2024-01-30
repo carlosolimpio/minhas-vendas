@@ -5,48 +5,79 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.carlosolimpio.minhasvendas.R
+import com.carlosolimpio.minhasvendas.databinding.LayoutDateOrdersBinding
 import com.carlosolimpio.minhasvendas.databinding.LayoutItemOrderBinding
+import com.carlosolimpio.minhasvendas.domain.order.ListResult
 import com.carlosolimpio.minhasvendas.domain.order.Order
 import com.carlosolimpio.minhasvendas.domain.order.computeTotalOrderValue
 import com.carlosolimpio.minhasvendas.presentation.extensions.toBRLCurrencyString
 
 class OrderListAdapter(
     private val onOrderClick: (orderId: Long) -> Unit
-) : RecyclerView.Adapter<OrderListAdapter.OrderViewHolder>() {
+) : RecyclerView.Adapter<OrderListAdapter.ListViewHolder>() {
 
-    private val diffUtil = object : DiffUtil.ItemCallback<Order>() {
-        override fun areItemsTheSame(oldItem: Order, newItem: Order): Boolean {
-            return oldItem.number == newItem.number
+    private val list = mutableListOf<ListResult>()
+
+    fun submitData(newList: List<ListResult>) {
+        list.clear()
+        list.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
+        val vh = when (viewType) {
+            0 -> {
+                DateViewHolder(LayoutDateOrdersBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                ))
+            }
+            1 -> {
+                OrderViewHolder(LayoutItemOrderBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                ))
+            }
+            else -> {
+                throw Exception("layout not found")
+            }
         }
-        override fun areContentsTheSame(oldItem: Order, newItem: Order) = oldItem == newItem
+
+        return vh
     }
 
-    private val asyncListDiffer = AsyncListDiffer(this, diffUtil)
+    override fun getItemCount() = list.size
 
-    fun submitData(list: List<Order>) {
-        asyncListDiffer.submitList(list)
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        when (holder) {
+            is DateViewHolder -> {
+                holder.bind((list[position] as ListResult.Header).date)
+            }
+            is OrderViewHolder -> {
+                holder.bind((list[position] as ListResult.OrderList).order)
+            }
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
-        val binding = LayoutItemOrderBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-
-        return OrderViewHolder(binding)
+    override fun getItemViewType(position: Int): Int {
+        return if (list[position] is ListResult.Header) {
+            0
+        } else if (list[position] is ListResult.OrderList) {
+            1
+        } else {
+            throw Exception("invalid viewtype")
+        }
     }
 
-    override fun getItemCount() = asyncListDiffer.currentList.size
-
-    override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
-        holder.bind(asyncListDiffer.currentList[position])
-    }
+    abstract inner class ListViewHolder(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root)
 
     inner class OrderViewHolder(
         private val binding: LayoutItemOrderBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    ) : ListViewHolder(binding) {
 
         fun bind(order: Order) {
             binding.apply {
@@ -59,6 +90,14 @@ class OrderListAdapter(
 
                 cardItemOrder.setOnClickListener { onOrderClick(order.number) }
             }
+        }
+    }
+
+    inner class DateViewHolder(
+        private val binding: LayoutDateOrdersBinding
+    ) : ListViewHolder(binding) {
+        fun bind(date: String) {
+            binding.textDateValue.text = date
         }
     }
 }

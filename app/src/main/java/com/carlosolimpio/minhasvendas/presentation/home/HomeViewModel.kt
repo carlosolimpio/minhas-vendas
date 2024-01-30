@@ -6,14 +6,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.carlosolimpio.minhasvendas.domain.core.OrderNotFoundException
 import com.carlosolimpio.minhasvendas.domain.core.UiState
-import com.carlosolimpio.minhasvendas.domain.order.Order
+import com.carlosolimpio.minhasvendas.domain.order.ListResult
 import com.carlosolimpio.minhasvendas.domain.order.OrderRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: OrderRepository) : ViewModel() {
-    private val _orderListState = MutableLiveData<UiState<List<Order>>>(UiState.Loading)
-    val orderListState: LiveData<UiState<List<Order>>>
+    private val _orderListState = MutableLiveData<UiState<List<ListResult>>>(UiState.Loading)
+    val orderListState: LiveData<UiState<List<ListResult>>>
         get() = _orderListState
 
     fun fetchAllOrders() {

@@ -3,6 +3,7 @@ package com.carlosolimpio.minhasvendas.domain.order
 data class Order(
     val number: Long,
     val clientName: String,
+    val date: String,
     val items: List<Item>
 )
 

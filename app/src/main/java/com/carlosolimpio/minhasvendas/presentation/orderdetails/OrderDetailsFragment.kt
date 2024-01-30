@@ -20,6 +20,8 @@ import com.carlosolimpio.minhasvendas.presentation.extensions.onBackPressedCusto
 import com.carlosolimpio.minhasvendas.presentation.extensions.toBRLCurrencyString
 import com.carlosolimpio.minhasvendas.presentation.home.CREATE_ORDER_ID
 import org.koin.android.ext.android.inject
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class OrderDetailsFragment : Fragment() {
     private val binding by lazy { FragmentOrderDetailsBinding.inflate(layoutInflater) }
@@ -126,12 +128,18 @@ class OrderDetailsFragment : Fragment() {
                 val order = Order(
                     number = textCardOrderNumberValue.text.toString().toLong(),
                     clientName = editTextClientName.text.toString(),
+                    date = LocalDateTime.now().getCurrentDate(),
                     items = itemList
                 )
 
                 viewModel.saveOrder(order)
             }
         }
+    }
+
+    fun LocalDateTime.getCurrentDate(): String {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        return this.format(formatter)
     }
 
     private fun initNewOrderViews(orderId: Long) {

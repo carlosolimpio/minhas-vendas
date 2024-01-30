@@ -98,6 +98,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textOrderTotal"
                 app:layout_constraintTop_toTopOf="@+id/textOrderTotal"
                 tools:text="R$ 1000,00" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
